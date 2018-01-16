@@ -5,7 +5,6 @@
     <input type="text" v-model="value" placeholder="value">
     <span @click="setDoNow">click me</span>
     <router-link to="/two">go to web Two!</router-link>
-    <div @click.stop="doex">点</div>
   </div>
 </template>
 <script>
@@ -20,12 +19,6 @@ export default {
     }
   },
   methods: {
-    doex(){
-      let ex={'play':'computer'}
-      for(var i in ex){
-        console.log(i,":",ex[i])
-      }
-    },
     setDoNow() {
       let doing={};
       let key = this.key
