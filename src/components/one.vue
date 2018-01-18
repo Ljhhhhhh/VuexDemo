@@ -5,32 +5,41 @@
     <input type="text" v-model="value" placeholder="value">
     <span @click="setDoNow">click me</span>
     <router-link to="/two">go to web Two!</router-link>
+    <Child :val="num"></Child>
+    <input type="number" v-model="num">
   </div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
-
-export default {
-  data() {
-    return {
-      msg: 'hello ',
-      key:'',
-      value:''
-    }
-  },
-  methods: {
-    setDoNow() {
-      let doing={};
-      let key = this.key
-      let value = this.value
-      doing[key]=value
-      this.setLJH(doing)
+  import {
+    mapMutations
+  } from 'vuex'
+  import Child from './child'
+  export default {
+    data() {
+      return {
+        msg: 'hello ',
+        key: '',
+        value: '',
+        num:0
+      }
     },
-    ...mapMutations({
-      setLJH: 'SET_LJH'
-    })
+    methods: {
+      setDoNow() {
+        let doing = {};
+        let key = this.key
+        let value = this.value
+        doing[key] = value
+        this.setLJH(doing)
+      },
+      ...mapMutations({
+        setLJH: 'SET_LJH'
+      })
+    },
+    components: {
+      Child
+    }
   }
-}
+
 </script>
 <style lang="less" scoped>
   h1 {
@@ -43,7 +52,8 @@ export default {
     color: #11df11;
     text-decoration: none;
   }
-  span{
+
+  span {
     display: inline-block;
     width: 100px;
     height: 30px;
@@ -53,4 +63,5 @@ export default {
     color: #FFF;
     cursor: pointer;
   }
+
 </style>

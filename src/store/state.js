@@ -1,5 +1,6 @@
 const state = {
-  ljh: {}
+  ljh: {},
+  countNum: 0
 }
 
 export default state
