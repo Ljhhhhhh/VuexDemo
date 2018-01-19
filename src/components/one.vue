@@ -3,27 +3,48 @@
     <h1>{{msg}}this is One.</h1>
     <input type="text" v-model="key" placeholder="key">
     <input type="text" v-model="value" placeholder="value">
+
+    <br>
     <span @click="setDoNow">click me</span>
+    <br>
     <router-link to="/two">go to web Two!</router-link>
-    <Child :val="num"></Child>
-    <input type="number" v-model="num">
+    <br>
+    <router-link to="/fade">go to web Fade!</router-link>
+    <br>
+    <button @click="changeShow">动画</button>
+      <Child :val="num" v-show="show"></Child>
+    <p>
+      <input type="number" v-model="num">
+      <span>{{countNum}}</span>
+    </p>
   </div>
 </template>
 <script>
   import {
-    mapMutations
+    mapMutations,
+    mapGetters
   } from 'vuex'
   import Child from './child'
+
   export default {
     data() {
       return {
+        show: false,
         msg: 'hello ',
         key: '',
         value: '',
-        num:0
+        num: 0
       }
     },
+    computed:{
+      ...mapGetters([
+       'countNum'
+      ])
+    },
     methods: {
+      changeShow() {
+        this.show = !this.show
+      },
       setDoNow() {
         let doing = {};
         let key = this.key
@@ -42,6 +63,11 @@
 
 </script>
 <style lang="less" scoped>
+  body,html{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
   h1 {
     color: #9ae;
     text-align: left;
